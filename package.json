@@ -1,0 +1,28 @@
+{
+  "name": "john-dorian.github.io",
+  "version": "1.0.0",
+  "description": "The easy to use JavaScript framework for those who only want to write HTML and CSS",
+  "private": true,
+  "main": "index.html",
+  "dependencies": {
+    "bulma": "^0.6.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jekyll build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/john-dorian/john-dorian.github.io.git"
+  },
+  "keywords": [
+    "website",
+    "jekyll"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/john-dorian/john-dorian.github.io/issues"
+  },
+  "homepage": "https://github.com/john-dorian/john-dorian.github.io#readme"
+}
