@@ -8,16 +8,20 @@ github_username:  jekyll
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
 sass:
   load_paths:
     - _sass
     - node_modules
-      
+
+include:
+  - assets/
+
 # Exclude from processing
 exclude:
   - .git
   - .gitignores
   - Gemfile
   - Gemfile.lock
-  - node_modules
-  - vendor
+  - node_modules/
+  - vendor/

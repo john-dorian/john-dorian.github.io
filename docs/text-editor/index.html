@@ -11,3 +11,78 @@ title: Text Editor
 		</div>
 	</div>
 </div>
+
+<div class="section">
+	<div class="container">
+		<h3 class="title">Demonstration</h3>
+
+		<div class="field">
+			<label for="example-editor" class="label">Demo editor</label>
+			<textarea name="example" id="example-editor" cols="30" rows="10" data-jd-text-editor data-base-url="https://github.com/" data-buttons-tpl="demo-buttons-tpl" data-single-button-tpl="demo-single-button-tpl" class="textarea">This is an example message with some <strong>bold</strong> and some <em>italic</em> text.
+
+Oh, and here is a <sup>superscript</sup> and a <sub>subscript</sub>.
+
+Also, here is an image: <img src="favicon.ico" alt="GitHub Favicon"></textarea>
+
+			<template id="demo-buttons-tpl">
+				<div class="field" data-inject-buttons></div>
+			</template>
+
+			<template id="demo-single-button-tpl">
+				{% raw %}<button type="button" class="button" title="{{ title }}" data-button>{{ content }}</button>{% endraw %}
+			</template>
+		</div>
+	</div>
+</div>
+
+<hr>
+
+<div class="section">
+	<div class="container">
+		<h3 class="title">Quick use</h3>
+
+		<h4 class="subtitle">The HTML part</h4>
+
+		{% highlight html %}
+<textarea name="example" id="example-editor" class="textarea" cols="30" rows="10" data-jd-text-editor>Your text goes here</textarea>{% endhighlight %}
+
+		<h4 class="subtitle">A bit of CSS</h4>
+
+		{% highlight css %}
+.textarea {
+	white-space: pre;
+}{% endhighlight %}
+	</div>
+</div>
+
+<hr>
+
+<div class="section">
+	<div class="container">
+		<h3 class="title">Parameters</h3>
+
+		<h4 class="subtitle">Customizing the buttons</h4>
+
+		<div class="content">
+			<p>To use your own buttons style, you can specify which templates to use:</p>
+		</div>
+
+			{% highlight html %}{% raw %}
+<textarea name="example" id="example-editor" class="textarea" cols="30" rows="10" data-jd-text-editor data-base-url="https://github.com/" data-buttons-tpl="jd-text-editor-buttons-tpl" data-single-button-tpl="jd-text-editor-single-button-tpl">Your text goes here</textarea>
+
+<template id="jd-text-editor-buttons-tpl">
+	<div data-inject-buttons></div>
+</template>
+
+<template id="jd-text-editor-single-button-tpl">
+	<button type="button" title="{{ title }}" data-button data-icon="format_{{ id }}">{{ content }}</button>
+</template>{% endraw %}{% endhighlight %}
+	</div>
+</div>
+
+<style>
+	.textarea {
+		white-space: pre;
+	}
+</style>
+<script src="{{ '/assets/js/text-editor.js' | prepend:baseurl | prepend:url }}"></script>

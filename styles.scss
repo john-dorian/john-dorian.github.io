@@ -7,3 +7,12 @@
 $primary: #9ca6da;
 
 @import "bulma/bulma.sass";
+@import "code-highlight.scss";
+
+[hidden] {
+	display: none;
+}
+
+pre {
+	tab-size: 4;
+}
