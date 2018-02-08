@@ -1,4 +1,8 @@
 _site
 .sass-cache
 .jekyll-metadata
-node_modules
+node_modules/*
+!node_modules/bulma
+node_modules/bulma/*
+!node_modules/bulma/*.sass
+!node_modules/bulma/sass/
