@@ -46,6 +46,10 @@ Also, here is an image: <img src="favicon.ico" alt="GitHub Favicon"></textarea>
 		{% highlight html %}
 <textarea name="example" id="example-editor" class="textarea" cols="30" rows="10" data-jd-text-editor>Your text goes here</textarea>{% endhighlight %}
 
+		<div class="content">
+			<p>This means you simply have to use the <code>data-jd-text-editor</code> attibute to create a basic text editor! Simple enough, no?</p>
+		</div>
+
 		<h4 class="subtitle">A bit of CSS</h4>
 
 		{% highlight css %}
@@ -67,7 +71,7 @@ Also, here is an image: <img src="favicon.ico" alt="GitHub Favicon"></textarea>
 			<p>To use your own buttons style, you can specify which templates to use:</p>
 		</div>
 
-			{% highlight html %}{% raw %}
+		{% highlight html %}{% raw %}
 <textarea name="example" id="example-editor" class="textarea" cols="30" rows="10" data-jd-text-editor data-base-url="https://github.com/" data-buttons-tpl="jd-text-editor-buttons-tpl" data-single-button-tpl="jd-text-editor-single-button-tpl">Your text goes here</textarea>
 
 <template id="jd-text-editor-buttons-tpl">
@@ -77,6 +81,123 @@ Also, here is an image: <img src="favicon.ico" alt="GitHub Favicon"></textarea>
 <template id="jd-text-editor-single-button-tpl">
 	<button type="button" title="{{ title }}" data-button data-icon="format_{{ id }}">{{ content }}</button>
 </template>{% endraw %}{% endhighlight %}
+
+		<div class="content">
+			<p>A quick summary of the attributes used on the textarea itself:</p>
+
+			<table class="table is-fullwidth">
+				<thead>
+					<tr>
+						<th width="25%">Attribute</th>
+						<th width="50%">Role</th>
+						<th width="25%">Default value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>
+							<em><code>data-jd-text-editor</code></em>
+						</th>
+						<td>Creates the text editor</td>
+						<td><em>No value</em></td>
+					</tr>
+					<tr>
+						<th>
+							<code>data-base-url</code>
+						</th>
+						<td>Defines the absolute URL to use for relative paths in <code>src</code> and <code>href</code> attributes in the preview</td>
+						<td><code>''</code> (empty string)</td>
+					</tr>
+					<tr>
+						<th>
+							<code>data-buttons-tpl</code>
+						</th>
+						<td>The id of the template used for the buttons container</td>
+						<td>None, a default template is used</td>
+					</tr>
+					<tr>
+						<th>
+							<code>data-single-button-tpl</code>
+						</th>
+						<td>The id of the template used for each button</td>
+						<td>None, a default template is used</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p>Now for the attributes used on the buttons container:</p>
+
+			<table class="table is-fullwidth">
+				<thead>
+					<tr>
+						<th width="25%">Attribute</th>
+						<th width="50%">Role</th>
+						<th width="25%">Default value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>
+							<em><code>data-inject-buttons</code></em>
+						</th>
+						<td>Used on the element where the buttons should be injected</td>
+						<td><em>No value</em></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p>And finally, the attributes used on the buttons:</p>
+
+			<table class="table is-fullwidth">
+				<thead>
+					<tr>
+						<th width="25%">Attribute</th>
+						<th width="50%">Role</th>
+						<th width="25%">Default value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>
+							<em><code>data-button</code></em>
+						</th>
+						<td>Used on the button to apply the click listener (required to make it work)</td>
+						<td><em>No value</em></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p>You can also use some template markes to customize your buttons:</p>
+
+			<table class="table is-fullwidth">
+				<thead>
+					<tr>
+						<th width="25%">Property name</th>
+						<th width="75%">Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>
+							<code>id</code>
+						</th>
+						<td>Unique identifier of the button (something like <code>bold</code>, <code>italic</code>, <code>image</code>…)</td>
+					</tr>
+					<tr>
+						<th>
+							<code>title</code>
+						</th>
+						<td>A small description as to what the button might do</td>
+					</tr>
+					<tr>
+						<th>
+							<code>content</code>
+						</th>
+						<td>A super short text (usually a single character or emoji) used as the button's text content</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>
 
