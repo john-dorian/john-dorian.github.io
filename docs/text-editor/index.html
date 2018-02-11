@@ -72,7 +72,7 @@ Also, here is an image: <img src="favicon.ico" alt="GitHub Favicon"></textarea>
 		</div>
 
 		{% highlight html %}{% raw %}
-<textarea name="example" id="example-editor" class="textarea" cols="30" rows="10" data-jd-text-editor data-base-url="https://github.com/" data-buttons-tpl="jd-text-editor-buttons-tpl" data-single-button-tpl="jd-text-editor-single-button-tpl">Your text goes here</textarea>
+<textarea name="example" id="example-editor" class="textarea" cols="30" rows="10" data-jd-text-editor data-base-url="https://github.com/" data-active-buttons="bold, italic, link, image" data-buttons-tpl="jd-text-editor-buttons-tpl" data-single-button-tpl="jd-text-editor-single-button-tpl">Your text goes here</textarea>
 
 <template id="jd-text-editor-buttons-tpl">
 	<div data-inject-buttons></div>
@@ -107,6 +107,13 @@ Also, here is an image: <img src="favicon.ico" alt="GitHub Favicon"></textarea>
 						</th>
 						<td>Defines the absolute URL to use for relative paths in <code>src</code> and <code>href</code> attributes in the preview</td>
 						<td><code>''</code> (empty string)</td>
+					</tr>
+					<tr>
+						<th>
+							<code>data-active-buttons</code>
+						</th>
+						<td>The (comma separated) list of buttons to show</td>
+						<td>None, all available buttons are shown by default</td>
 					</tr>
 					<tr>
 						<th>

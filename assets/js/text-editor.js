@@ -11,6 +11,21 @@ class JD_TextEditor {
 		if (Array.isArray(options.buttons)) {
 			this.buttons = options.buttons;
 		}
+		else if (options.activeButtons) {
+			if (typeof options.activeButtons === 'string') {
+				this.activeButtons = options.activeButtons.split(',').map((str) => str.trim());
+			}
+
+			if (Array.isArray(this.activeButtons)) {
+				const availableButtons = this.buttons;
+				this.buttons = {};
+				this.activeButtons.forEach((btnId) => {
+					if (availableButtons[btnId]) {
+						this.buttons[btnId] = availableButtons[btnId];
+					}
+				});
+			}
+		}
 
 		if (options.buttonsTpl && document.getElementById(options.buttonsTpl)) {
 			this.buttonsTpl = document.getElementById(options.buttonsTpl);
@@ -72,7 +87,11 @@ class JD_TextEditor {
 	createButtons() {
 		if (this.buttons) {
 			Object.entries(this.buttons).forEach((entry) => {
-				const [id, button] = entry;
+				let [id, button] = entry;
+
+				if (button.id) {
+					id = button.id;
+				}
 
 				const btnTpl = document.createElement('template');
 
@@ -144,11 +163,28 @@ JD_TextEditor.prototype.buttons = {
 		title: 'Toggle subscript',
 		command: 'subscript'
 	},
+	link: {
+		content: '🌐',
+		title: 'Insert a link',
+		customCommand: () => {
+			let linkHref;
+
+			do {
+				linkHref = window.prompt('Target URL', 'https://');
+			} while (linkHref === '');
+
+			if (typeof linkHref !== 'string') {
+				return;
+			}
+
+			document.execCommand('createLink', false, linkHref);
+		}
+	},
 	image: {
 		content: '📷',
 		title: 'Insert an image',
 		customCommand: () => {
-			var imageSrc;
+			let imageSrc;
 
 			do {
 				imageSrc = window.prompt('Image URL', 'https://');
