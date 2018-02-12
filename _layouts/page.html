@@ -4,10 +4,14 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
-	<link rel="stylesheet" href="{{ '/styles.css' | prepend:site.url }}">
+	<link rel="stylesheet" href="{{ '/assets/css/styles.css' | prepend:site.url }}">
 </head>
 <body>
 	{% include navbar.html %}
-	{{ content }}
+	<main id="page">
+		{{ content }}
+	</main>
+	{% include footer.html %}
+	<script src="{{ '/assets/js/docs.js' | prepend:site.url }}"></script>
 </body>
 </html>
