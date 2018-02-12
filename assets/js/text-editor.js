@@ -63,6 +63,18 @@ class JD_TextEditor {
 
 		this.textarea.parentNode.insertBefore(this.editorArea, this.textarea);
 
+		document.querySelectorAll(`label[for=${this.textarea.id}]`).forEach((label) => {
+			label.addEventListener('click', (e) => {
+				e.preventDefault();
+				const selection = window.getSelection();
+				const range = document.createRange();
+				range.setStart(this.editorArea, 0);
+				range.setEnd(this.editorArea, 0);
+				selection.removeAllRanges();
+				selection.addRange(range);
+			});
+		});
+
 		try {
 			document.execCommand('styleWithCSS', false, false);
 		}
