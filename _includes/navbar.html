@@ -1,7 +1,7 @@
 <nav class="navbar" role="navigation" aria-label="Main navigation">
 	<div class="container">
 		<div class="navbar-brand">
-			<a href="{{ site.url }}" class="navbar-item">{{ site.title }}</a>
+			<a href="{{ '/' | prepend:site.baseurl | prepend:site.url }}" class="navbar-item">{{ site.title }}</a>
 		</div>
 		<div class="navbar-menu">
 			<div class="navbar-start">
