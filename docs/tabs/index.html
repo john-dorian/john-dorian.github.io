@@ -1,0 +1,462 @@
+---
+layout: page
+title: Tabs
+---
+
+<div class="hero is-primary is-medium is-bold">
+	<div class="hero-body">
+		<div class="container">
+			<h1 class="title">Tabs</h1>
+			<h2 class="subtitle">For when JD needs help managing many things at the same time</h2>
+		</div>
+	</div>
+</div>
+
+<div class="section">
+	<div class="container">
+		<h3 class="title">Demonstration</h3>
+
+		<div data-jd-tabs>
+			<ul role="tablist">
+				<button role="tab" aria-selected="true" aria-controls="tab-patients" id="tab-label-patients">
+					Patients
+				</button>
+				<button role="tab" aria-selected="false" aria-controls="tab-doctors" data-deletable id="tab-label-doctors" tabindex="-1">
+					Doctors
+				</button>
+				<button role="tab" aria-selected="false" aria-controls="tab-janitors" id="tab-label-janitors" tabindex="-1" data-deletable="">
+					Janitors
+				</button>
+			</ul>
+		
+			<div tabindex="0" role="tabpanel" class="content" id="tab-patients" aria-labelledby="tab-label-patients">
+				<h3>Patients</h3>
+		
+				<ul>
+					<li>Jill Tracy</li>
+					<li>Patricia Wilk</li>
+					<li>Herbert</li>
+					<li>Ben Sullivan</li>
+				</ul>
+			</div>
+			<div tabindex="0" role="tabpanel" class="content" id="tab-doctors" aria-labelledby="tab-label-doctors" hidden>
+				<h3>Doctors</h3>
+		
+				<ul>
+					<li>John Dorian</li>
+					<li>Christopher Turk</li>
+					<li>Perry Cox</li>
+					<li>Kim Briggs</li>
+				</ul>
+			</div>
+			<div tabindex="0" role="tabpanel" class="content" id="tab-janitors" aria-labelledby="tab-label-janitors" hidden>
+				<h3>Janitors</h3>
+		
+				<ul>
+					<li>Glen Matthews</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<hr class="is-marginless">
+
+<div class="section">
+	<div class="container">
+		<h3 class="title">Quick use</h3>
+
+		<h4 class="subtitle">The HTML part</h4>
+
+		{% highlight html %}
+		<div data-jd-tabs>
+			<ul role="tablist">
+				<button role="tab" aria-selected="true" aria-controls="tab-patients" id="tab-label-patients">
+					Patients
+				</button>
+				<button role="tab" aria-selected="false" aria-controls="tab-doctors" data-deletable id="tab-label-doctors" tabindex="-1">
+					Doctors
+				</button>
+				<button role="tab" aria-selected="false" aria-controls="tab-janitors" id="tab-label-janitors" tabindex="-1" data-deletable="">
+					Janitors
+				</button>
+			</ul>
+		
+			<div tabindex="0" role="tabpanel" class="content" id="tab-patients" aria-labelledby="tab-label-patients">
+				<h3>Patients</h3>
+		
+				<ul>
+					<li>Jill Tracy</li>
+					<li>Patricia Wilk</li>
+					<li>Herbert</li>
+					<li>Ben Sullivan</li>
+				</ul>
+			</div>
+			<div tabindex="0" role="tabpanel" class="content" id="tab-doctors" aria-labelledby="tab-label-doctors" hidden>
+				<h3>Doctors</h3>
+		
+				<ul>
+					<li>John Dorian</li>
+					<li>Christopher Turk</li>
+					<li>Perry Cox</li>
+					<li>Kim Briggs</li>
+				</ul>
+			</div>
+			<div tabindex="0" role="tabpanel" class="content" id="tab-janitors" aria-labelledby="tab-label-janitors" hidden>
+				<h3>Janitors</h3>
+		
+				<ul>
+					<li>Glen Matthews</li>
+				</ul>
+			</div>
+		</div>{% endhighlight %}
+
+		<div class="content">
+			<p>This means you simply have to use the <code>data-jd-tabs</code> attibute — along with some basic accessibility attributes — to create some basic tabs!</p>
+		</div>
+
+		<h4 class="subtitle">A bunch of CSS</h4>
+
+		<p>As this is a fairly complicated component, there is wuite a bit of CSS, but most of it is up to you</p>
+
+		{% highlight css %}[role="tablist"] {
+	margin: 0 0 -.1em;
+	overflow: visible;
+}
+
+[role="tab"] {
+	position: relative;
+	margin: 0;
+	padding: .3em .5em .4em;
+	border: 1px solid hsl(219, 1%, 72%);
+	border-radius: .2em .2em 0 0;
+	box-shadow: 0 0 .2em hsl(219, 1%, 72%);
+	overflow: visible;
+	font-family: inherit;
+	font-size: inherit;
+	background: hsl(220, 20%, 94%);
+}
+
+[role="tab"]:hover::before,
+[role="tab"]:focus::before,
+[role="tab"][aria-selected="true"]::before {
+	position: absolute;
+	bottom: 100%;
+	right: -1px;
+	left: -1px;
+	border-radius: 0.2em 0.2em 0 0;
+	border-top: 3px solid hsl(20, 96%, 48%);
+	content: '';
+}
+
+[role="tab"][aria-selected="true"] {
+	border-radius: 0;
+	background: hsl(220, 43%, 99%);
+	outline: 0;
+}
+
+[role="tab"][aria-selected="true"]:not(:focus):not(:hover)::before {
+	border-top: 5px solid hsl(218, 96%, 48%);
+}
+
+[role="tab"][aria-selected="true"]::after {
+	position: absolute;
+	z-index: 3;
+	bottom: -1px;
+	right: 0;
+	left: 0;
+	height: .3em;
+	background: hsl(220, 43%, 99%);
+	box-shadow: none;
+	content: '';
+}
+
+[role="tab"]:hover,
+[role="tab"]:focus,
+[role="tab"]:active {
+	outline: 0;
+	border-radius: 0;
+	color: inherit;
+}
+
+[role="tab"]:hover::before,
+[role="tab"]:focus::before {
+	border-color: hsl(20, 96%, 48%);
+}
+
+[role="tabpanel"] {
+	position: relative;
+	z-index: 2;
+	padding: .5em .5em .7em;
+	border: 1px solid hsl(219, 1%, 72%);
+	border-radius: 0 .2em .2em .2em;
+	box-shadow: 0 0 .2em hsl(219, 1%, 72%);
+	background: hsl(220, 43%, 99%);
+}
+
+[role="tabpanel"]:focus {
+	border-color: hsl(20, 96%, 48%);
+	box-shadow: 0 0 .2em hsl(20, 96%, 48%);
+	outline: 0;
+}
+
+[role="tabpanel"]:focus::after {
+	position: absolute;
+	bottom: 0;
+	right: -1px;
+	left: -1px;
+	border-bottom: 3px solid hsl(20, 96%, 48%);
+	border-radius: 0 0 0.2em 0.2em;
+	content: '';
+}
+
+[role="tabpanel"] p {
+	margin: 0;
+}
+
+[role="tabpanel"] * + p {
+	margin-top: 1em;
+}{% endhighlight %}
+	</div>
+</div>
+
+<hr class="is-marginless">
+
+<div class="section">
+	<div class="container">
+		<h3 class="title">Parameters</h3>
+
+		<div class="content">
+			<p>A quick summary of the attributes used on the tabs container itself:</p>
+
+			<table class="table is-fullwidth">
+				<thead>
+					<tr>
+						<th width="25%">Attribute</th>
+						<th width="50%">Role</th>
+						<th width="25%">Default value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>
+							<em>
+								<code>data-jd-tabs</code>
+							</em>
+						</th>
+						<td>Creates the tabs</td>
+						<td>
+							<em>No value</em>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<code>data-delay</code>
+						</th>
+						<td>
+							Defines the delay (in ms) to focus a tab when using arrows to navigate
+						</td>
+						<td>
+							<code>300</code>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p>Now for the attributes used on the tabs buttons:</p>
+
+			<table class="table is-fullwidth">
+				<thead>
+					<tr>
+						<th width="25%">Attribute</th>
+						<th width="50%">Role</th>
+						<th width="25%">Default value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>
+							<em>
+								<code>role="tab"</code>
+							</em>
+						</th>
+						<td>
+							Required to make the tab system work
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<th>
+							<em>
+								<code>aria-controls</code>
+							</em>
+						</th>
+						<td>
+							The ID of the tab panel the tab controls
+						</td>
+						<td>
+							<em>Up to you</em>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<em>
+								<code>data-deletable</code>
+							</em>
+						</th>
+						<td>
+							Makes the whole tab deletable by using the <kbd>DEL</kbd> key
+						</td>
+						<td>
+							<code>false</code>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<p>And finally the attributes used on the panels:</p>
+
+			<table class="table is-fullwidth">
+				<thead>
+					<tr>
+						<th width="25%">Attribute</th>
+						<th width="50%">Role</th>
+						<th width="25%">Default value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>
+							<em>
+								<code>role="tabpanel"</code>
+							</em>
+						</th>
+						<td>
+							Required to make the tab system work
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<th>
+							<em>
+								<code>id</code>
+							</em>
+						</th>
+						<td>
+							The ID of the tab panel (must be the same as the <code>aria-controls</code> attribute used in the button
+						</td>
+						<td>
+							<em>Up to you</em>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<style>
+	[hidden] {
+		display: none;
+	}
+
+	[role="tablist"] {
+		margin: 0 0 -.1em;
+		overflow: visible;
+	}
+
+	[role="tab"] {
+		position: relative;
+		margin: 0;
+		padding: .3em .5em .4em;
+		border: 1px solid hsl(219, 1%, 72%);
+		border-radius: .2em .2em 0 0;
+		box-shadow: 0 0 .2em hsl(219, 1%, 72%);
+		overflow: visible;
+		font-family: inherit;
+		font-size: inherit;
+		background: hsl(220, 20%, 94%);
+	}
+
+	[role="tab"]:hover::before,
+	[role="tab"]:focus::before,
+	[role="tab"][aria-selected="true"]::before {
+		position: absolute;
+		bottom: 100%;
+		right: -1px;
+		left: -1px;
+		border-radius: 0.2em 0.2em 0 0;
+		border-top: 3px solid hsl(20, 96%, 48%);
+		content: '';
+	}
+
+	[role="tab"][aria-selected="true"] {
+		border-radius: 0;
+		background: hsl(220, 43%, 99%);
+		outline: 0;
+	}
+
+	[role="tab"][aria-selected="true"]:not(:focus):not(:hover)::before {
+		border-top: 5px solid hsl(218, 96%, 48%);
+	}
+
+	[role="tab"][aria-selected="true"]::after {
+		position: absolute;
+		z-index: 3;
+		bottom: -1px;
+		right: 0;
+		left: 0;
+		height: .3em;
+		background: hsl(220, 43%, 99%);
+		box-shadow: none;
+		content: '';
+	}
+
+	[role="tab"]:hover,
+	[role="tab"]:focus,
+	[role="tab"]:active {
+		outline: 0;
+		border-radius: 0;
+		color: inherit;
+	}
+
+	[role="tab"]:hover::before,
+	[role="tab"]:focus::before {
+		border-color: hsl(20, 96%, 48%);
+	}
+
+	[role="tabpanel"] {
+		position: relative;
+		z-index: 2;
+		padding: .5em .5em .7em;
+		border: 1px solid hsl(219, 1%, 72%);
+		border-radius: 0 .2em .2em .2em;
+		box-shadow: 0 0 .2em hsl(219, 1%, 72%);
+		background: hsl(220, 43%, 99%);
+	}
+
+	[role="tabpanel"]:focus {
+		border-color: hsl(20, 96%, 48%);
+		box-shadow: 0 0 .2em hsl(20, 96%, 48%);
+		outline: 0;
+	}
+
+	[role="tabpanel"]:focus::after {
+		position: absolute;
+		bottom: 0;
+		right: -1px;
+		left: -1px;
+		border-bottom: 3px solid hsl(20, 96%, 48%);
+		border-radius: 0 0 0.2em 0.2em;
+		content: '';
+	}
+
+	[role="tabpanel"] p {
+		margin: 0;
+	}
+
+	[role="tabpanel"] * + p {
+		margin-top: 1em;
+	}
+</style>
+<script src="{{ '/assets/js/tabs.js' | prepend:baseurl | prepend:url }}"></script>
